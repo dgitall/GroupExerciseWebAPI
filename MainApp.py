@@ -15,7 +15,7 @@ pageURL = "&page="
 ################################
 ## Galleries
 
-galleries_list = []
+""" galleries_list = []
 totalpages = 1
 page = 0
 while page < totalpages:
@@ -38,7 +38,7 @@ while page < totalpages:
     
     page += 1
             
-pp(galleries_list)
+pp(galleries_list) """
       
 ################################
 ## Places
@@ -66,7 +66,7 @@ while page < totalpages:
     
     page += 1
             
-print(places_list)
+pp(places_list)
 
 ################################
 ## Agents
@@ -103,7 +103,7 @@ agenttypes_list = []
 totalpages = 1
 page = 0
 while page < totalpages:
-    agenttypesURL = f"{baseURL}agenttypes{limitURL}{pageURL}{page+1}"
+    agenttypesURL = f"{baseURL}agent-types{limitURL}{pageURL}{page+1}"
     response = requests.get(agenttypesURL)
     agenttypes_json = response.json()
     
@@ -125,13 +125,13 @@ while page < totalpages:
 pp(agenttypes_list)
 
 ################################
-## Exhibits Types
+## Exhibitions
 
 exhibitions_list = []
 totalpages = 1
 page = 0
 while page < totalpages:
-    exhibitionsURL = f"{baseURL}exhibits{limitURL}{pageURL}{page+1}"
+    exhibitionsURL = f"{baseURL}exhibitions{limitURL}{pageURL}{page+1}"
     response = requests.get(exhibitionsURL)
     exhibitions_json = response.json()
     

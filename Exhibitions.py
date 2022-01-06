@@ -35,7 +35,7 @@ class Exhibitions:
         ##suggest_autocomplete_boosted: object
         ##suggest_autocomplete_all: object
         last_updated_source = dt.datetime(1970, 1, 1)
-        last_update = dt.datetime(1970, 1, 1)
+        last_updated = dt.datetime(1970, 1, 1)
         timestamp = dt.datetime(1970, 1, 1)
     
     id: int
@@ -65,7 +65,7 @@ class Exhibitions:
     suggest_autocomplete_boosted: object
     suggest_autocomplete_all: object
     last_updated_source: dt.datetime
-    last_update: dt.datetime
+    last_updated: dt.datetime
     timestamp: dt.datetime
     
     def read(self, jsondata): 
@@ -82,12 +82,24 @@ class Exhibitions:
             self.web_url = jsondata['web_url']
             self.image_url = jsondata['image_url']
             self.type = jsondata ['type']
-            self.aic_start_at = dt.datetime.strptime(jsondata['aic_start_at'], dateformat)
-            self.aic_end_at = dt.datetime.strptime(jsondata['aic_end_at'], dateformat)
-            self.date_display = jsondata['date_display']
+            self.status = jsondata ['status']
+            if jsondata.get('aic_start_at') == None:
+                self.aic_start_at = dt.datetime(1970, 1, 1)
+            else:
+                self.aic_start_at = dt.datetime.strptime(jsondata['aic_start_at'], dateformat)
+            if jsondata.get('aic_end_at') == None:
+                self.aic_end_at = dt.datetime(1970, 1, 1)
+            else:
+                self.aic_end_at = dt.datetime.strptime(jsondata['aic_end_at'], dateformat)
+            if jsondata.get('date_display') == None:
+                self.date_display = dt.datetime(1970, 1, 1)
+            else:
+                self.date_display = jsondata['date_display']
             self.department_display = jsondata['department_display']
             self.gallery_id = jsondata['gallery_id']
             self.gallery_title = jsondata['gallery_title']
+            self.artwork_ids  = jsondata['artwork_ids']
+            self.artwork_titles = jsondata['artwork_titles']            
             self.artist_ids = jsondata['artist_ids']
             self.site_ids = jsondata['site_ids']
             self.image_id = jsondata['image_id']

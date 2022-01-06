@@ -78,13 +78,16 @@ class Agents:
             self.is_licensing_restricted = bool(jsondata['is_licensing_restricted'])
             self.is_artist = bool(jsondata['is_artist'])
             self.agent_type_title = jsondata['agent_type_title']
-            self.agent_type_id = int(jsondata['agent_type_id'])
+            if jsondata['agent_type_id'] == None:
+                self.agent_type_id = 0           
+            else:
+                self.agent_type_id = int(jsondata['agent_type_id'])
             if jsondata['artwork_ids'] == None:
-                jsondata['artwork_ids'] = 0
+                self.artwork_ids = 0
             else:
                 self.artwork_ids = jsondata['artwork_ids']
             if jsondata['site_ids'] == None:
-                jsondata['site_ids'] = 0
+                self.site_ids = 0
             else:
                 self.site_ids = jsondata['site_ids']
             if jsondata.get('suggest_autocomplete_boosted') == None:
