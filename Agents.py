@@ -64,9 +64,15 @@ class Agents:
             self.title = jsondata['title']
             self.sort_title = jsondata['sort_title']
             self.alt_titles = jsondata['alt_titles']
-            self.birth_date = int(jsondata['birth_date'])
+            if jsondata['birth_date'] == None:
+                self.birth_date = 0
+            else:
+                self.birth_date = int(jsondata['birth_date'])
             self.birth_place = jsondata['birth_place']
-            self.death_date = int(jsondata['death_date'])
+            if jsondata['death_date'] == None:
+                self.death_date = 0
+            else:
+                self.death_date = int(jsondata['death_date'])
             self.death_place = jsondata['death_place']
             self.description = jsondata['description']
             self.is_licensing_restricted = bool(jsondata['is_licensing_restricted'])
