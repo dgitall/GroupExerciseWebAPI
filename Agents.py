@@ -7,28 +7,28 @@ import requests
 class Agents:
     """Agents class"""
     def __init__(self):
-        id: 0
-        api_model: ' '
-        api_link: ' '
-        title: ' '
-        sort_title: ' '
-        alt_titles: ' '
-        bith_date: 0
-        birth_place: ' '
-        death_date: 0
-        death_place: ' '
-        description: ' '
-        is_licensing_restricted: bool
-        is_artist: bool
-        agent_type_title: ' '
-        agent_type_id: 0
-        artwork_ids: 0
-        site_ids: 0
-        suggest_autocomplete_boosted: ' '
-        suggest_autocomplete_all: ' '
-        last_updated_source: dt.datetime
-        last_updated: dt.datetime
-        timestamp: dt.datetime
+        id = 0
+        api_model = ' '
+        api_link = ' '
+        title = ' '
+        sort_title = ' '
+        alt_titles = ' '
+        bith_date = 0
+        birth_place = ' '
+        death_date = 0
+        death_place = ' '
+        description = ' '
+        is_licensing_restricted = bool
+        is_artist = bool
+        agent_type_title = ' '
+        agent_type_id = 0
+        artwork_ids = 0
+        site_ids = 0
+        suggest_autocomplete_boosted = ' '
+        suggest_autocomplete_all = ' '
+        last_updated_source = dt.datetime
+        last_updated = dt.datetime
+        timestamp = dt.datetime
 
     id: int
     api_model: str
