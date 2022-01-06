@@ -47,27 +47,33 @@ class Galleries:
     
     def read(self, jsondata): 
         status = 0
-        
+        dateformat = "%Y-%m-%dT%H:%M:%S%z"
         if(jsondata is not None):
-            self.id = jsondata['id']
+            self.id = int(jsondata['id'])
             self.api_model = jsondata['api_model']
             self.api_link = jsondata['api_link']
             self.title = jsondata['title']
             self.type = jsondata['type']
-            self.is_closed = jsondata['is_closed']
+            self.is_closed = bool(jsondata['is_closed'])
             self.number = jsondata['number']
             self.floor = jsondata['floor']
-            self.latitude = jsondata['latitude']
-            self.longitude = jsondata['longitude']
+            if jsondata['latitude'] == None:
+                self.latitude = -999999
+            else:
+                self.latitude = float(jsondata['latitude'])
+            if jsondata['longitude'] == None:
+                self.longitude = -999999
+            else:
+                self.longitude = float(jsondata['longitude'])
             self.latlon = jsondata['latlon']
-            self.last_updated_source = jsondata['last_updated_source']
-            self.last_updated = jsondata['last_updated']
-            self.timestamp = jsondata['timestamp']
+            self.last_updated_source = dt.datetime.strptime(jsondata['last_updated_source'], dateformat)
+            self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
+            self.timestamp = dt.datetime.strptime(jsondata['timestamp'], dateformat)
         else:
             status = -1
                        
         return status
     
     def __str__(self):
-        return title
+        return self.title
     
