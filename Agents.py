@@ -13,7 +13,7 @@ class Agents:
         title = ' '
         sort_title = ' '
         alt_titles = ' '
-        bith_date = 0
+        birth_date = 0
         birth_place = ' '
         death_date = 0
         death_place = ' '
@@ -36,7 +36,7 @@ class Agents:
     title: str
     sort_title: str
     alt_titles: str
-    bith_date: int
+    birth_date: int
     birth_place: str
     death_date: int
     death_place: str
@@ -64,7 +64,7 @@ class Agents:
             self.title = jsondata['title']
             self.sort_title = jsondata['sort_title']
             self.alt_titles = jsondata['alt_titles']
-            self.bith_date = int(jsondata['birth_date'])
+            self.birth_date = int(jsondata['birth_date'])
             self.birth_place = jsondata['birth_place']
             self.death_date = int(jsondata['death_date'])
             self.death_place = jsondata['death_place']
@@ -90,7 +90,10 @@ class Agents:
             else:
                 self.suggest_autocomplete_all = jsondata['suggest_autocomplete_all']
             self.last_updated_source = dt.datetime.strptime(jsondata['last_updated_source'], dateformat)
-            self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
+            if jsondata.get('last_updated') == None:
+                self.last_updated = dt.datetime(1970, 1, 1)
+            else:
+                self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
             self.timestamp = dt.datetime.strptime(jsondata['timestamp'], dateformat)
         else:
             status = -1

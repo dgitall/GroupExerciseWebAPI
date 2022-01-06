@@ -6,6 +6,7 @@ import Galleries
 import Places
 import Agents
 import AgentTypes
+import Exhibitions
 
 baseURL = "https://api.artic.edu/api/v1/"
 limitURL = "?limit=10"
@@ -42,30 +43,30 @@ pp(galleries_list)
 ################################
 ## Places
 
-galleries_list = []
+places_list = []
 totalpages = 1
 page = 0
 while page < totalpages:
-    galleriesURL = f"{baseURL}places{limitURL}{pageURL}{page+1}"
-    response = requests.get(galleriesURL)
-    galleries_json = response.json()
+    placesURL = f"{baseURL}places{limitURL}{pageURL}{page+1}"
+    response = requests.get(placesURL)
+    places_json = response.json()
     
     if totalpages == 1:
-        totalpages = int(galleries_json['pagination']['total_pages'])
+        totalpages = int(places_json['pagination']['total_pages'])
     
     # pull out the data package from the json payload
     # it returns an iterable list of
-    data = galleries_json['data']
+    data = places_json['data']
     
-    for galleryData in data:
-        gallery = Places.Places()
-        result = gallery.read(galleryData)
+    for placesdata in data:
+        places = Places.Places()
+        result = places.read(placesdata)
         if (result == 0):
-            galleries_list.append(gallery)
+            places_list.append(places)
     
     page += 1
             
-pp(galleries_list)
+print(places_list)
 
 ################################
 ## Agents
@@ -123,3 +124,30 @@ while page < totalpages:
             
 pp(agenttypes_list)
 
+################################
+## Exhibits Types
+
+exhibitions_list = []
+totalpages = 1
+page = 0
+while page < totalpages:
+    exhibitionsURL = f"{baseURL}exhibits{limitURL}{pageURL}{page+1}"
+    response = requests.get(exhibitionsURL)
+    exhibitions_json = response.json()
+    
+    if totalpages == 1:
+        totalpages = int(exhibitions_json['pagination']['total_pages'])
+    
+    # pull out the data package from the json payload
+    # it returns an iterable list of
+    data = exhibitions_json['data']
+    
+    for exhibitionsData in data:
+        exhibitions = Exhibitions.Exhibitions()
+        result = exhibitions.read(exhibitionsData)
+        if (result == 0):
+            exhibitions_list.append(exhibitions)
+    
+    page += 1
+            
+pp(exhibitions_list)

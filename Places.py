@@ -14,7 +14,7 @@ class Places:
         ##suggest_autocomplete_boosted: object
         ##suggest_autocomplete_all: object
         last_updated_source = dt.datetime(1970, 1, 1)
-        last_update = dt.datetime(1970, 1, 1)
+        last_updated = dt.datetime(1970, 1, 1)
         timestamp = dt.datetime(1970, 1, 1)
     
     id: int
@@ -24,7 +24,7 @@ class Places:
     suggest_autocomplete_boosted: object
     suggest_autocomplete_all: object
     last_updated_source: dt.datetime
-    last_update: dt.datetime
+    last_updated: dt.datetime
     timestamp: dt.datetime
     
     def read(self, jsondata): 
@@ -44,7 +44,10 @@ class Places:
             else:
                 self.suggest_autocomplete_all = jsondata['suggest_autocomplete_all']
             self.last_updated_source = dt.datetime.strptime(jsondata['last_updated_source'], dateformat)
-            self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
+            if jsondata.get('last_updated') == None:
+                self.last_updated = dt.datetime(1970, 1, 1)
+            else:
+                self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
             self.timestamp = dt.datetime.strptime(jsondata['timestamp'], dateformat)
         else:
             status = -1

@@ -46,7 +46,10 @@ class AgentTypes:
             else:
                 self.suggest_autocomplete_all = jsondata['suggest_autocomplete_all']
             self.last_updated_source = dt.datetime.strptime(jsondata['last_updated_source'], dateformat)
-            self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
+            if jsondata.get('last_updated') == None:
+                self.last_updated = dt.datetime(1970, 1, 1)
+            else:
+                self.last_updated = dt.datetime.strptime(jsondata['last_updated'], dateformat)
             self.timestamp = dt.datetime.strptime(jsondata['timestamp'], dateformat)
         else:
             status = -1
