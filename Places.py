@@ -15,3 +15,5 @@ class Places:
     last_updated_source: dt.datetime
     last_update: dt.datetime
     timestamp: dt.datetime
+    
+    
