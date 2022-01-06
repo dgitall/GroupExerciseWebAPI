@@ -15,7 +15,7 @@ pageURL = "&page="
 ################################
 ## Galleries
 
-""" galleries_list = []
+galleries_list = []
 totalpages = 1
 page = 0
 while page < totalpages:
@@ -38,7 +38,7 @@ while page < totalpages:
     
     page += 1
             
-pp(galleries_list) """
+pp(galleries_list)
       
 ################################
 ## Places
